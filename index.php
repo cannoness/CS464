@@ -17,25 +17,25 @@ $sql = "select * from  `characters` where CharUserName='$user'";
  $array = mysqli_fetch_array($result);
  if ($rows==1){
 	 //display char
-	 echo "<a href='displaychar.php?charnum=1'>".$array['CharName']."</a>";
+	 echo "<a href='yourchar.php?charnum=".$array['CharName']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender'];?>
 	 <a href='javascript:void(0)' onclick='deletes(<?php echo $array['CharID']?>)'>Delete this char</a></td>
 	 
-	 <td width="50%"<?php
-	 echo "<a href='createchar.php?charnum=1'>You can create one more character</a>"; 
+	 <td width="50%"><?php
+	 echo "<a href='createchar.php?charnum=0'>Start creating a character!</a></tr></td>"; 
  }
  else if ($rows==2){
 	 //display chars
-	 //displaychar is I ju's link
-	 echo "<a href='displaychar.php?charnum=1'>".$array['CharName']."</a>";
+	 //yourchar is I ju's link
+	 echo "<a href='yourchar.php?charnum=".$array['CharName']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender']."<br/>";
-	 echo "<a href='javascript:void(0);' onclick='delete(".$array['CharID'].");'>Delete this char</a>";?>
+	 echo "<a href='javascript:void(0)' onclick='deletes(".$array['CharID'].")'>Delete this char</a>";?>
 	 </td>
 	 <td width="50%"><?php 
 	$array = mysqli_fetch_array($result);
-	 	 echo "<a href='displaychar.php?charnum=1'>".$array['CharName']."</a>";
+	 	 echo "<a href='yourchar.php?charnum=".$array['CharName']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender']."<br/>";
-	 echo "<a href='delete(".$array['CharID'].")'>Delete this char</a>";
+	 echo "<a href='javascript:void(0)' onclick='deletes(".$array['CharID'].")'>Delete this char</a>";
  }
  else{
 	 echo "<a href='createchar.php?charnum=0'>Start creating a character!</a></td><td><a href='createchar.php?charnum=0'>Start creating a character!</a>";
