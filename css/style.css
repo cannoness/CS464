@@ -1,13 +1,4 @@
-﻿/*
-================================================================================
-    Main style sheet for Video Annotation platform.
-
-    Class: ECE 435, 419, 420
-    
-    Collaboration between Senior Design and Software Engineering
-================================================================================
-*/
-
+﻿
 html {
     background: rgb(255, 255, 255);
     color: rgb(35, 35, 35);
@@ -111,6 +102,29 @@ ul {
 
 .index{
 	margin: 0 auto;
+	
+}
+
+.walls{	top: 0;	
+z-index:-3;
+	left:0;
+
+	position:absolute;
+	
+}
+
+.furniture{	top: 0;	
+z-index:-1;
+	left:0;
+
+	position:absolute;
+	
+}
+.floor{
+	top: 0;
+	left:0;
+	z-index:-2;
+	position:absolute;
 	
 }
 
