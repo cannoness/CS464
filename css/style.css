@@ -106,13 +106,69 @@ ul {
 }
 
 .walls{	top: 0;	
-z-index:-3;
+	z-index:-3;
 	left:0;
 
 	position:absolute;
 	
 }
+.hairc{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
 
+	z-index:0;	
+}
+
+.bangc{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
+
+	z-index:1;	
+}
+.beardct{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
+
+	z-index:0;
+}
+.beardcb{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
+
+	z-index:0;
+}
+.eyec{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
+
+	z-index:-2;	
+}
+.eyeshine{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
+
+	z-index:-1;	
+}
+.eyewhites{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
+
+	z-index:-3;	
+}
+.skint{
+	padding-top:0;
+	padding-left:0;
+	position:absolute;
+
+	z-index:-1;	
+}
 .furniture{	top: 0;	
 z-index:-1;
 	left:0;
@@ -148,7 +204,29 @@ z-index:-1;
 	vertical-align:top;
 	margin: 0 auto;
 }
+.fpreviewpane{
+	right:50%;
+	top:20%;
+	position:absolute;
+}
+.mpreviewpane{
+	right:50%;
+	top:20%;
+	position:absolute;
+}
+.charcreate{
+	padding-top:5%;
+	text-align:left;
+	margin: 0 auto;
+}
 
+.createchar{
+	text-align:center;
+	width:400px;
+	margin: 0 auto;
+}
+.createchar h1{
+	font-size:x-large;}
 .tdr{
 	height:100px;
 	width:350px;

@@ -3,8 +3,8 @@ include('auth.php');
 ?>
 
 <script src="js/makechar.js"></script>
+<script src="js/jquery-blendmode.js"></script>
 <script>
-var gender="female";
 $(function(){
   $('input[type="radio"]').click(function(){
     if ($(this).is(':checked'))
@@ -15,16 +15,22 @@ $(function(){
 		  document.getElementById("malehairs").style.display="none";
 		  document.getElementById("ladybangs").style.display="initial";
 		  document.getElementById("malebeards").style.display="none";
+		  document.getElementById("fpreviewpane").style.display="initial";
+		  document.getElementById("mpreviewpane").style.display="none";
 	  }
 	  else{
 		  document.getElementById("ladyhairs").style.display="none";
 		  document.getElementById("malehairs").style.display="initial";
 		  document.getElementById("ladybangs").style.display="none";
 		  document.getElementById("malebeards").style.display="initial";
+		  document.getElementById("fpreviewpane").style.display="none";
+		  document.getElementById("mpreviewpane").style.display="initial";
 	  }
     }
   });
-});</script>
+});
+
+</script>
 <script type="text/javascript">
 function KeepCount() {
 var NewCount= $(":checkbox:checked").length;
@@ -36,44 +42,48 @@ document.charcreate; return false;
 } 
 </SCRIPT>
 
-<div id="createachar">
- Hello <?php echo $_SESSION['username']?>!<br/>
+<div id="createachar" class="createchar">
+<h1> Hello <?php echo $_SESSION['username']?>!</h1><br/>
  Create your first character:
 
- <form id="charcreate" name="charcreate" action="crechar.php" method="POST">
-
- Pick a Name: <input type="text" name="name"  value="John Q Character" required><br/>
- Gender: <input type="radio" name="gender"
+ <form id="charcreate" name="charcreate" class="charcreate" action="crechar.php" method="POST">
+<table class="atable"></tr><td>
+ Pick a Name: </td><td><input type="text" name="name"  value="John Q Character" required><br/></tr><tr><td>
+ Gender:</td><td> <input type="radio" name="gender"
 <?php if (isset($gender) && $gender=="female") echo "checked";?>
 value="female">Female
 <input type="radio" name="gender"
 <?php if (isset($gender) && $gender=="male") echo "checked";?>
-value="male">Male<br/>
- EyeColor: <select name="eyecolor" id="eyecolor"><option name="red">red</option>
+value="male">Male<br/></tr><tr><td>
+ EyeColor: </td><td><select name="eyecolor" id="eyecolor" class="eyecolor" onchange="colorchanger('eyecolor')">
+ <option name="grey">grey</option>
+ <option name="red">red</option>
  <option name="hazel">hazel</option>
  <option name="green">green</option>
  <option name="blue">blue</option>
  <option name="black">black</option>
  <option name="brown">brown</option>
- </select><br/>
+ </select><br/></tr><tr><td>
  
- HairColor: <select name="haircolor" id="haircolor"><option name="black">black</option>
+ HairColor: </td><td><select name="haircolor" id="haircolor" onchange="colorchanger('haircolor')">
+ <option name="grey">grey</option>
+ <option name="black">black</option>
  <option name="brown">brown</option>
  <option name="blonde">blonde</option>
  <option name="red">red</option>
- <option name="grey">grey</option>
  <option name="dirtyblonde">dirtyblonde</option>
- </select><br/>
+ </select><br/></tr><tr><td>
  
- SkinTone: <select name="skintone" id="skintone"><option name="verydark">verydark</option>
+ SkinTone: </td><td><select name="skintone" id="skintone" onchange="colorchanger('skintone')">
+ <option name="verypale">verypale</option>
+ <option name="verydark">verydark</option>
  <option name="dark">dark</option>
  <option name="tan">tan</option>
  <option name="olive">olive</option>
  <option name="pale">pale</option>
- <option name="verypale">verypale</option>
- </select><br/>
+ </select><br/></tr><tr><td>
  
- HairStyle: <select name="hairstyle" id="ladyhairs"><option name="bald">bald</option>
+ HairStyle: </td><td><select name="hairstyle" id="ladyhairs" onchange="changehair('female')"><option name="bald">bald</option>
  <option name="bob">bob</option>
 <option name="abbz">abbz</option> 
 <option name="braid">braid</option>
@@ -82,7 +92,7 @@ value="male">Male<br/>
 <option name="greekish">greekish</option>
 <option name="long">long</option>
 <option name="ptail">ptail</option><br/>
-</select><select name="hairstyle" id="malehairs" style="display:none"><option name="bald">bald</option>
+</select><select name="hairstyle" id="malehairs" style="display:none" onchange="changehair('male')"><option name="bald">bald</option>
  <option name="dreds">dreds</option>
  <option name="flat">flat</option>
  <option name="merlhair">merlhair</option>
@@ -91,14 +101,14 @@ value="male">Male<br/>
  <option name="spikey">spikey</option>
  <option name="straight">straight</option>
  <option name="wavy">wavy</option>
- </select><br/>
- Decorative Hair Style:<select name="dechair" id="ladybangs"><option name="none">none</option> 
+ </select><br/></tr><tr><td>
+ Decorative Hair Style:</td><td><select name="dechair" id="ladybangs" onchange="changebangs()"><option name="none">none</option> 
  <option name="flippy">flippy</option>
  <option name="fullongface">fullongface</option>
  <option name="paige">paige</option>
  </select>
 
-<select id="malebeards"name="dechair" style="display:none"><option name="none">none</option>
+<select id="malebeards"name="dechair" style="display:none" onchange="changebeard()" ><option name="none">none</option>
 <option name="abelincoln">abelincoln</option>
 <option name="chinbeard">chinbeard</option>
 <option name="chinjacket">chinjacket</option>
@@ -108,7 +118,8 @@ value="male">Male<br/>
 <option name="leo">leo</option>
 <option name="moostache">moostache</option>
 </select>
- <br/>
+ <br/></tr>
+ </table>
  
   <input type="button" name="Next" onclick="$('#createachar2').show(); $('#charcreate').hide()" value="Next">
  </div>
@@ -145,9 +156,26 @@ value="male">Male<br/>
   </div>
  </form>
  </div>
+ <div id='fpreviewpane' class='fpreviewpane'>
+ <img src='img/femeyewhites.png' class='eyewhites'></img>
+ <img src='img/femfaceeyes.png' id='eyec' class='eyec'></img>
+ <img src='img/femfaceshine.png'  class='eyeshine'></img>
+ <img src='img/femalefaceskin.png' id='skint' name='skint'class='skint'></img>
+ <img src='' id='hairc' name='fhair' class='hairc'></img>
+ <img src='' id='bangc' name='bangs' class='bangc'></img>
+ </div>
+ 
+ <div id='mpreviewpane' class='fpreviewpane' style="display:none">
+ <img src='img/maleeyewhites.png' class='eyewhites'></img>
+ <img src='img/malefaceeyes.png' id='eyec' class='eyec'></img>
+ <img src='img/malefaceshine.png'  class='eyeshine'></img>
+ <img src='img/malefaceskin.png' id='skint' class='skint'></img>
+ <img src='' id='beardcb' name='beardb' class='beardcb'></img>
+ <img src='' id='beardct' name='beard' class='beardct'></img>
+ <img src='' id='mhairc' name='mhair' class='hairc'></img>
+ </div>
  
 <script>
-
 	var frm = $('#charcreate');
     frm.submit(function (ev) {
         $.ajax({
@@ -168,4 +196,5 @@ value="male">Male<br/>
 		});
 		 ev.preventDefault();
 })
-		</script>
+</script>
+<?php include_once "common/sidebar.php"; ?>
