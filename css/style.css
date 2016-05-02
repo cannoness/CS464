@@ -176,12 +176,24 @@ z-index:-1;
 	position:absolute;
 	
 }
+
+.furnitureb{	top: -1%;	
+z-index:-2;
+	left:-1%;
+	
+	position:absolute;
+	
+}
 .floor{
 	top: 0;
 	left:0;
-	z-index:-2;
+	z-index:-3;
 	position:absolute;
 	
+}
+.buystuffsdiv{	position:absolute;
+	top:12%;
+	right:25%;
 }
 
 .tdl{
@@ -247,7 +259,47 @@ z-index:-1;
 }
 
 
+.smhouse{
+	position:absolute;	
+	z-index:0;
+	padding-top:0;
+	padding-left:0;
+	width:125px;
+	height:125px;
+}
 
+.smroof{
+	position:absolute;
+	padding-top:0;
+	padding-left:0;
+
+	z-index:1;
+	width:125px;
+	height:125px;
+}
+.house{vertical-align:top;
+
+	width:100px;
+	height:100px;
+}
+.city{
+	vertical-align:top;
+	width:100%;
+	padding:10px;
+	background:url('../img/grasspatter.png');
+}
+.city a{color:white;
+font-size:small;
+
+}
+.buystuffs{
+	background-color:white;
+	color:black;
+	width:300px;
+	margin:0 auto;
+	padding:0;
+	height:200px;
+}
 /*
     HEADER
 */
@@ -262,7 +314,7 @@ z-index:-1;
 #ribbon { position: absolute; right: 4px; width: 24%; top:10%; overflow:hidden; }
 
 #ribbon ul { list-style: none; }
-#ribbon ul li { background: rgba(0,0,0,0.8); color: white; padding: 5px; margin: 0 0 5px 0; font-size: 12px; }
+#ribbon ul li {  color: black; padding: 5px; margin: 0 0 5px 0; font-size: 12px; }
 /*
     FOOTER
 */

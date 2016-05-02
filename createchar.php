@@ -17,6 +17,7 @@ $(function(){
 		  document.getElementById("malebeards").style.display="none";
 		  document.getElementById("fpreviewpane").style.display="initial";
 		  document.getElementById("mpreviewpane").style.display="none";
+		  $("#gendername").text("Fringe:");
 	  }
 	  else{
 		  document.getElementById("ladyhairs").style.display="none";
@@ -25,6 +26,7 @@ $(function(){
 		  document.getElementById("malebeards").style.display="initial";
 		  document.getElementById("fpreviewpane").style.display="none";
 		  document.getElementById("mpreviewpane").style.display="initial";
+		  $("#gendername").text("Beard:");
 	  }
     }
   });
@@ -51,7 +53,7 @@ document.charcreate; return false;
  Pick a Name: </td><td><input type="text" name="name"  value="John Q Character" required><br/></tr><tr><td>
  Gender:</td><td> <input type="radio" name="gender"
 <?php if (isset($gender) && $gender=="female") echo "checked";?>
-value="female">Female
+value="female" checked=true>Female
 <input type="radio" name="gender"
 <?php if (isset($gender) && $gender=="male") echo "checked";?>
 value="male">Male<br/></tr><tr><td>
@@ -101,8 +103,8 @@ value="male">Male<br/></tr><tr><td>
  <option name="spikey">spikey</option>
  <option name="straight">straight</option>
  <option name="wavy">wavy</option>
- </select><br/></tr><tr><td>
- Decorative Hair Style:</td><td><select name="dechair" id="ladybangs" onchange="changebangs()"><option name="none">none</option> 
+ </select><br/></tr><tr><td id = "gendername">
+ Fringe:</td><td><select name="dechair" id="ladybangs" onchange="changebangs()"><option name="none">none</option> 
  <option name="flippy">flippy</option>
  <option name="fullongface">fullongface</option>
  <option name="paige">paige</option>
