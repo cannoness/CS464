@@ -27,6 +27,9 @@ if($result){
 		$city= $res['CityName'];
 		$charname = $res['CharName'];
 		$housenum= $res['StrucID'];
+		if ($charname=="Cloud"){
+			echo $housenum;
+		}
 		$structype= $res['StrucType'];
 		echo "<td class='house'><a href='house.php?cid=".$housenum."&rid=0' onclick='return checkiffriend(`".$charname."`);'>";
 		if ($structype=="house")
@@ -39,7 +42,7 @@ if($result){
 			echo "<img src='img/woodhut.png' class='smhouse'><img src='img/smshadow.png' class='smhouse'>
 		<img src='img/strawroofsmhut.png' class='smroof'>
 		".$charname."'s House </a></td>";
-		else if($structype=="EmptyPlot")
+		else //if($structype=="EmptyPlot")
 			echo "<img src='img/smshadow.png' class='smhouse'>".$charname."'s House </a></td>";
 		$i++;
 		if ($i == 8){

@@ -12,12 +12,15 @@ Welcome <?php echo $_SESSION['username']; ?>!</h2><br/><a href="friendlist.php" 
 <?php
 $user = $_SESSION['username'];
 $sql = "select * from  `characters` where CharUserName='$user'";
- $result = mysqli_query($link,$sql) or die(mysql_error());
+ $result = mysqli_query($link,$sql);
+ if (!$result)
+	 throw new Exception(mysqli_error($link)."[ $result]");
  $rows = mysqli_num_rows($result); 
  $array = mysqli_fetch_array($result);
+
  if ($rows==1){
 	 //display char
-	 echo "<a href='yourchar.php?charnum=".$array['CharName']."'>".$array['CharName']."</a>";
+	 echo "<a href='yourchar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender'];?>
 	 <a href='javascript:void(0)' onclick='deletes(<?php echo $array['CharID']?>)'>Delete this char</a></td>
 	 
@@ -27,13 +30,13 @@ $sql = "select * from  `characters` where CharUserName='$user'";
  else if ($rows==2){
 	 //display chars
 	 //yourchar is I ju's link
-	 echo "<a href='yourchar.php?charnum=".$array['CharName']."'>".$array['CharName']."</a>";
+	 echo "<a href='yourchar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender']."<br/>";
 	 echo "<a href='javascript:void(0)' onclick='deletes(".$array['CharID'].")'>Delete this char</a>";?>
 	 </td>
 	 <td width="50%"><?php 
 	$array = mysqli_fetch_array($result);
-	 	 echo "<a href='yourchar.php?charnum=".$array['CharName']."'>".$array['CharName']."</a>";
+	 	 echo "<a href='yourchar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender']."<br/>";
 	 echo "<a href='javascript:void(0)' onclick='deletes(".$array['CharID'].")'>Delete this char</a>";
  }

@@ -2,10 +2,10 @@
 <?php include('auth.php');?>
 
 <?php 
-$charname = $_GET['charnum'];
+$charnum = $_GET['charnum'];
 //$sql = "Select CityName,StrucID from `structures` where CharIDOwns in (Select CharID from `characters` where CharName='$charname')";
 $sql2 = "SELECT CityName,StrucID,CharName from structures inner join characters on characters.CharID = structures.CharIDOwns where structures.CharIDOwns in (Select CharID from characters
-where CharName='$charname')";
+where CharID='$charnum')";
 $result=$link->query($sql2);
 if($result){
 	$res= mysqli_fetch_row($result);

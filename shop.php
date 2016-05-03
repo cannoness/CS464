@@ -9,7 +9,7 @@ $whois = $_GET['cid'];
 $sql2="select * from  stats
 inner join charholdsingredient
 	on charholdsingredient.CharIDHolds=stats.CharIDStats
-	and  stats.CharIDStats = '$whois' group by IngNameID";
+	and  stats.CharIDStats = '$whois'";
 	//we do this one to figure out what we're currently holding in inventory.
 	$reslt = $link->query($sql2);
 	while($blah = mysqli_fetch_assoc($reslt)){
