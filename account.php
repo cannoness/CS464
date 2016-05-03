@@ -27,9 +27,9 @@ function test_input($data) {
 <p>
 </p>
 
-<form id="account" type="text" method="post" action=''>
-Update Email Address<br/>
-&emsp;&emsp;<input id="email-address" name="email-address" type ="text" value=<?=$email?>><br/><br/>
+<form id="account" type="text" name="account" method="post" action='updateaccount.php'>
+Update Email Address<br/> Currently <?=$email?><br/>
+&emsp;&emsp;<input id="email-address" name="email-address" type ="text" value=""><br/><br/>
 
 
 <p> Change Password</p>
@@ -73,8 +73,32 @@ Update Email Address<br/>
 				echo $cpasswordErr." ".$passwordErr;
 		}}
 		elseif (!empty($_POST['change-pass']) && !($_POST["change-pass"] == $_POST["confirm-pass"])){
-			echo "Passwords do not match";
-}}
+			echo "Passwords do not match";}
+		else
+			echo "password updated";
+		}
 ?>
+<script>
+	var frm = $('#account');
+    frm.submit(function (ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function(data) {
+				// Do something with data that came back. 
+				console.log('not ded');
+				location.href = "account.php";
+		   },complete: function(response) {
+    
+			console.log(response);
+			},
+		   error: function(data) {
+			   console.log('ded');
+		   }
+		});
+		 ev.preventDefault();
+})
+</script>
 <?php include_once "common/sidebar.php"; ?>
 <?php include_once "common/footer.php"; ?> 

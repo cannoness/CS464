@@ -18,6 +18,15 @@ inner join charholdsingredient
 		$skill2 = $blah['Skill2'];
 		$skill3 = $blah['Skill3'];
 	}
+	if(empty($ingsonhand)){
+		$sql2="select * from  stats where CharIDStats = '$whois'";
+	//we do this one to figure out what we're currently holding in inventory.
+	$reslt = $link->query($sql2);
+	while($blah = mysqli_fetch_assoc($reslt)){
+		$skill1 = $blah['Skill1'];
+		$skill2 = $blah['Skill2'];
+		$skill3 = $blah['Skill3'];
+	}}
 $sql3="SELECT
   OutputName
 FROM
@@ -63,8 +72,8 @@ Available for purchase</td></tr><tr><td>Ingredient</td><td>Type</td><td>Cost</td
 
 <div id='buystuffsdiv' class='buystuffsdiv' >
 <table class='buystuffs'><tr><td>
-	You currently have in inventory:<?php foreach($ingsonhand as $ing) echo "<br/>".$ing;?><br/></td></tr>
-	<tr><td>With your skills you can build:<?php foreach($recipeallowed as $rec) echo "<br/>".$rec;?><br/></td></tr>
+	You currently have in inventory:<?php if(!empty($ingsonhand)){foreach($ingsonhand as $ing) echo "<br/>".$ing;}?><br/></td></tr>
+	<tr><td>With your skills you can build:<?php if (!empty($recipeallowed)){foreach($recipeallowed as $rec) echo "<br/>".$rec;}?><br/></td></tr>
 	<tr><td>You have <?php echo $coin['Coins'];?> coins to spend.</td></tr><tr><td><a href="craft.php?cid=<?php echo $whois;?>">Crafting</a></td></tr></table>
 </div>
 <script type="text/javascript">

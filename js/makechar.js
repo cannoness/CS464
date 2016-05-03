@@ -7,24 +7,32 @@ function changehair(gender){
 	if (gender=="female"){
 	if (hairstyle=="greekish"){
 		$('#hairc').attr("src","img/greekish.png");
-	}else if (hairstyle=="bald"){
+	}
+	else if (hairstyle=="bald"){
 		$('#hairc').attr("src","");
-	}else if (hairstyle=="abbz"){
+	}
+	else if (hairstyle=="abbz"){
 		$('#hairc').attr("src","img/abbz.png");
-	}else if (hairstyle=="long"){
+	}
+	else if (hairstyle=="long"){
 		$('#hairc').attr("src","img/long.png");
-	}else if (hairstyle=="bob"){
+	}
+	else if (hairstyle=="bob"){
 		$('#hairc').attr("src","img/bob.png");
-	}else if (hairstyle=="braid"){
+	}
+	else if (hairstyle=="braid"){
 		$('#hairc').attr("src","img/braid.png");
-	}else if (hairstyle=="bun"){
+	}
+	else if (hairstyle=="bun"){
 		$('#hairc').attr("src","img/bun.png");
-	}else if (hairstyle=="ptail"){
+	}
+	else if (hairstyle=="ptail"){
 		$('#hairc').attr("src","img/ptail.png");
-	}else if (hairstyle=="butchy"){
+	}
+	else if (hairstyle=="butchy"){
 		$('#hairc').attr("src","img/butchy.png");
 	}
-	}
+}
 	
 	if(gender=='male'){
 	var f = document.getElementById('malehairs');
@@ -106,44 +114,174 @@ function colorchanger(where){
 	var skintone = g.options[g.selectedIndex].value;
 	if (where == "haircolor"){
 	if(haircolor=="black"){
+		changehair(gender);
+			if (gender=="female"){
+		changehair(gender);
 		$("#hairc").blendmode({
-		//add something here to reload the image that's up
-		//first get the current selected image from the img picker, maybe add a fucntion?
-		//then reload that image, then apply the color
 			"mode" : "multiply",
 			"object" : "#333"
-	});}
+		});changebangs();
+		$("#bangc").blendmode({
+			"mode" : "multiply",
+			"object" : "#333"
+		});}
+		else{
+		changebeard()
+		;$("#mhairc").blendmode({
+			"mode" : "multiply",
+			"object" : "#333"
+		});
+		$("#beardct").blendmode({
+			"mode" : "multiply",
+			"object" : "#333"
+		});
+		$("#beardcb").blendmode({
+			"mode" : "multiply",
+			"object" : "#333"
+		});
+		
+		}}
 	 if(haircolor=="brown"){
-		//add something here to reload the image that's up
+		changehair(gender);
+		if (gender=="female"){
+		changehair(gender);
 		$("#hairc").blendmode({
 			"mode" : "multiply",
-			"object" : "#b35900"
-	});}
+			"object" : "#802b00"
+		});changebangs();
+		$("#bangc").blendmode({
+			"mode" : "multiply",
+			"object" : "#802b00"
+		});}
+		else{
+		changebeard()
+		;$("#mhairc").blendmode({
+			"mode" : "multiply",
+			"object" : "#802b00"
+		});
+		$("#beardct").blendmode({
+			"mode" : "multiply",
+			"object" : "#802b00"
+		});
+		$("#beardcb").blendmode({
+			"mode" : "multiply",
+			"object" : "#802b00"
+		});
+		
+		}
+		}
 	 if(haircolor=="blonde"){
-		//add something here to reload the image that's up
+		changehair(gender);
+		if (gender=="female"){
 		$("#hairc").blendmode({
 			"mode" : "multiply",
-			"object" : "#ffff80"
-	});}
+			"object" : "#ffff66"
+		});
+		changebangs();
+		$("#bangc").blendmode({
+			"mode" : "multiply",
+			"object" : "#ffff66"
+		});
+		}else{
+		changebeard()
+		;$("#mhairc").blendmode({
+			"mode" : "multiply",
+			"object" : "#ffff66"
+		});
+		$("#beardct").blendmode({
+			"mode" : "multiply",
+			"object" : "#ffff66"
+		});
+		$("#beardcb").blendmode({
+			"mode" : "multiply",
+			"object" : "#ffff66"
+		});
+		
+		}
+		}
+	
 	 if(haircolor=="red"){
-		//add something here to reload the image that's up
+		changehair(gender);
+		if (gender=="female"){
 		$("#hairc").blendmode({
 			"mode" : "multiply",
 			"object" : "#ff6600"
-	});}
+		});changebangs();
+		$("#bangc").blendmode({
+			"mode" : "multiply",
+			"object" : "#ff6600"
+		});}else{changehair(gender);
+		changebeard()
+		;$("#mhairc").blendmode({
+			"mode" : "multiply",
+			"object" : "#ff6600"
+		});
+		$("#beardct").blendmode({
+			"mode" : "multiply",
+			"object" : "#ff6600"
+		});
+		$("#beardcb").blendmode({
+			"mode" : "multiply",
+			"object" : "#ff6600"
+		});
+		
+	 }}
 	 if(haircolor=="grey"){
-		//add something here to reload the image that's up
+		changehair(gender);
+		if (gender=="female"){
 		$("#hairc").blendmode({
 			"mode" : "multiply",
 			"object" : "#fff"
-	});}
-	 if(haircolor=="dityblonde"){
-		//add something here to reload the image that's up
+		});changebangs();
+		$("#bangc").blendmode({
+			"mode" : "multiply",
+			"object" : "#fff"
+		});
+		}else{
+		changebeard()
+		;$("#mhairc").blendmode({
+			"mode" : "multiply",
+			"object" : "#fff"
+		});
+		$("#beardct").blendmode({
+			"mode" : "multiply",
+			"object" : "#fff"
+		});
+		$("#beardcb").blendmode({
+			"mode" : "multiply",
+			"object" : "#fff"
+		});
+		
+	 }}
+	 if(haircolor=="dirtyblonde"){
+		changehair(gender);
+		if (gender=="female"){
+		changehair(gender);
 		$("#hairc").blendmode({
 			"mode" : "multiply",
 			"object" : "#e6b800"
-	});}
-	}
+		});changebangs();
+		$("#bangc").blendmode({
+			"mode" : "multiply",
+			"object" : "#e6b800"
+		});
+		}else{changehair(gender);
+		changebeard()
+		;$("#mhairc").blendmode({
+			"mode" : "multiply",
+			"object" : "#e6b800"
+		});
+		$("#beardct").blendmode({
+			"mode" : "multiply",
+			"object" : "#e6b800"
+		});
+		$("#beardcb").blendmode({
+			"mode" : "multiply",
+			"object" : "#e6b800"
+		});
+		
+		}
+	}}
 	else if (where=="eyecolor"){
 	if(eyecolor=="red"){
 		$('#eyec').attr('src', 'img/femfaceeyes.png');

@@ -28,7 +28,7 @@ if($result){
 		$charname = $res['CharName'];
 		$housenum= $res['StrucID'];
 		$structype= $res['StrucType'];
-		echo "<td class='house'><a href='house.php?cid=".$housenum."' onclick='return checkiffriend(`".$charname."`);'>";
+		echo "<td class='house'><a href='house.php?cid=".$housenum."&rid=0' onclick='return checkiffriend(`".$charname."`);'>";
 		if ($structype=="house")
 			echo "<img src='img/steeplehousesm.png' class='smhouse'>
 		<img src='img/roof2.png' class='smroof'>

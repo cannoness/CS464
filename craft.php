@@ -18,6 +18,15 @@ inner join charholdsingredient
 		$skill2 = $blah['Skill2'];
 		$skill3 = $blah['Skill3'];
 	}
+	if(empty($ingsonhand)){
+		$sql2="select * from  stats where CharIDStats = '$whois'";
+	//we do this one to figure out what we're currently holding in inventory.
+	$reslt = $link->query($sql2);
+	while($blah = mysqli_fetch_assoc($reslt)){
+		$skill1 = $blah['Skill1'];
+		$skill2 = $blah['Skill2'];
+		$skill3 = $blah['Skill3'];
+	}}
 $sql3="SELECT
   OutputName,IngNeeded
 FROM
@@ -47,11 +56,11 @@ INNER JOIN
 	echo "
 <div id='shop'><form id='crafter' name='crafter' method='post' class='crafter' action='docrafting.php?pid=".$whois."'> <table><tr><td cellspan='3'>
 Crafting Table</td></tr><tr><td>Select one to craft</td><td>Available to craft</td><td>Ingredients required</td></tr>";
-	foreach ($recipeallowed as $res){
+	if(!empty($recipeallowed)){foreach ($recipeallowed as $res){
 	echo "<tr><td><input name='checkbox[]' onclick='return KeepCount();' type='checkbox' id=".$res['OutputName'].",".$res['IngNeeded']." value=".$res['OutputName'].",".$res['IngNeeded']."></td>
 	<td>".$res['OutputName']."</td>
 	<td>".$res['IngNeeded']." </td></tr>";
-	}
+	}}
 	echo "<tr><td>
 	</td><td cellspan=1></td><td cellspan=1></td></tr><tr><td>
 <input id='submit' type='submit' class='button' value='Purchase' name='submit'>
@@ -64,8 +73,8 @@ Crafting Table</td></tr><tr><td>Select one to craft</td><td>Available to craft</
 
 <div id='buystuffsdiv' class='buystuffsdiv' >
 <table class='buystuffs'><tr><td>
-	You currently have these ingredients:<?php foreach($ingsonhand as $ing) echo "<br/>".$ing;?><br/></td></tr>
-	<tr><td>With your skills you can build:<?php foreach($recipeallowed as $rec) echo "<br/>".$rec['OutputName'];?><br/></td></tr>
+	You currently have these ingredients:<?php if(!empty($ingsonhand)){foreach($ingsonhand as $ing) echo "<br/>".$ing;}?><br/></td></tr>
+	<tr><td>With your skills you can build:<?php if(!empty($recipeallowed)){foreach($recipeallowed as $rec) echo "<br/>".$rec['OutputName'];}?><br/></td></tr>
 	<tr><td>You have <?php echo $coin['Coins'];?> coins to spend.</td></tr><tr><td> <a href='shop.php?cid=<?=$whois?>'>Buy more ingredients</a></td></tr></table>
 </div>
 <script type="text/javascript">

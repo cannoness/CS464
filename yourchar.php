@@ -20,7 +20,7 @@ else{
 ?>
 
 <?php echo $charn;?>'s character profile<br/>
-<a href="house.php?cid=<?=$housenum?>"> visit your house </a> <br/>
+<a href="house.php?cid=<?=$housenum?>&rid=0"> visit your house </a> <br/>
 <a href="city.php?cid=<?=$city?>"> visit your city </a>
 
 <?php include_once "common/sidebar.php"; ?>
