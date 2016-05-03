@@ -3,25 +3,20 @@
 
 <?php 
 $username= $_SESSION['username'];
-$purchase =$_POST['checkbox'];
+$crafted =$_POST['checkbox'];
 $pid = $_GET['pid'];
-$cid = $_GET['cid'];
 $sum = 0;
 //doublecheck money again
 
-foreach ($purchase as $box){
-	$boxes =explode(',',$box);
-	$sum += $boxes[1];
-}
-if($sum <= $cid){
-	$left = $cid-$sum;
 $link->begin_transaction();
-$sql="Update `characters` set Coins='$left' where CharID='$pid'";
+foreach($crafted as $box){
+		$boxes=explode(',',$box);
+$sql="Delete from charholdsingredient where IngNameID='$boxes[1]' and CharIDHolds='$pid'";
 $result = mysqli_query($link,$sql);
 if ($result){
-	foreach($purchase as $box){
+	foreach($crafted as $box){
 		$boxes=explode(',',$box);
-		$sql2="INSERT into `charholdsingredient` (CharIDHolds,IngNameID) Values ('$pid','$boxes[0]')";
+		$sql2="INSERT into `equipment` (CharIDWearing,EquipName,EquippedInSlot) Values ('$pid','$boxes[0]','inventory')";
 		$result2= $link->query($sql2);
 		if ($result2)
 			continue;
@@ -34,7 +29,4 @@ else
 	throw new Exception(mysqli_error($link)."[ $result]");
 $return = 1;
 }
-else if ($sum >= $cid)
-	$return = -1;
-	
 ?>

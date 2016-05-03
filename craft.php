@@ -19,7 +19,7 @@ inner join charholdsingredient
 		$skill3 = $blah['Skill3'];
 	}
 $sql3="SELECT
-  OutputName
+  OutputName,IngNeeded
 FROM
   crafting
 INNER JOIN
@@ -36,23 +36,24 @@ INNER JOIN
 	$resc=$link->query($sql3);
 	if ($resc){
 	while($rescc=mysqli_fetch_assoc($resc)){
-		$recipeallowed[]=$rescc['OutputName'];
+		$recipeallowed[]=$rescc;
 	}
 	}else{throw new Exception(mysqli_error($link)."[ $resc]");}
-$moneysql = "Select Coins from characters where CharID='$whois'";
+	$moneysql = "Select Coins from characters where CharID='$whois'";
 	$cquery=$link->query($moneysql);
 	$coin =mysqli_fetch_assoc($cquery);
 	$sqlt = "Select * from ingredient";
 	$ingres = $link->query($sqlt);
 	echo "
-<div id='shop'><form id='purchaser' name='purchaser' method='post' class='purchaser' action='purchase.php?cid=".$coin['Coins']."&pid=".$whois."'> <table><tr><td cellspan='3'>
-Available for purchase</td></tr><tr><td>Ingredient</td><td>Type</td><td>Cost</td></tr>";
-	while($inglist=mysqli_fetch_assoc($ingres)){
-		$checkboxv = $inglist['IngName'].','.$inglist['CoinCost'];
-		echo "<tr><td><input name='checkbox[]' onclick='KeepCount()' type='checkbox' id=".$checkboxv."	value=".$checkboxv."></td><td>".$inglist['IngName']."</td><td>".$inglist['IngType']."</td><td>".$inglist['CoinCost']."</td></tr>";
+<div id='shop'><form id='crafter' name='crafter' method='post' class='crafter' action='docrafting.php?pid=".$whois."'> <table><tr><td cellspan='3'>
+Crafting Table</td></tr><tr><td>Select one to craft</td><td>Available to craft</td><td>Ingredients required</td></tr>";
+	foreach ($recipeallowed as $res){
+	echo "<tr><td><input name='checkbox[]' onclick='return KeepCount();' type='checkbox' id=".$res['OutputName'].",".$res['IngNeeded']." value=".$res['OutputName'].",".$res['IngNeeded']."></td>
+	<td>".$res['OutputName']."</td>
+	<td>".$res['IngNeeded']." </td></tr>";
 	}
 	echo "<tr><td>
-	</td><td>Cost</td><td>Left to spend</td></tr><tr><td>
+	</td><td cellspan=1></td><td cellspan=1></td></tr><tr><td>
 <input id='submit' type='submit' class='button' value='Purchase' name='submit'>
 </td><td id='coincost'></td><td id='leftmoney'></td></tr></table></form>";
 	$moneysql = "Select Coins from characters where CharID='$whois'";
@@ -63,13 +64,13 @@ Available for purchase</td></tr><tr><td>Ingredient</td><td>Type</td><td>Cost</td
 
 <div id='buystuffsdiv' class='buystuffsdiv' >
 <table class='buystuffs'><tr><td>
-	You currently have in inventory:<?php foreach($ingsonhand as $ing) echo "<br/>".$ing;?><br/></td></tr>
-	<tr><td>With your skills you can build:<?php foreach($recipeallowed as $rec) echo "<br/>".$rec;?><br/></td></tr>
-	<tr><td>You have <?php echo $coin['Coins'];?> coins to spend.</td></tr><tr><td><a href="craft.php?cid=<?php echo $whois;?>">Crafting</a></td></tr></table>
+	You currently have these ingredients:<?php foreach($ingsonhand as $ing) echo "<br/>".$ing;?><br/></td></tr>
+	<tr><td>With your skills you can build:<?php foreach($recipeallowed as $rec) echo "<br/>".$rec['OutputName'];?><br/></td></tr>
+	<tr><td>You have <?php echo $coin['Coins'];?> coins to spend.</td></tr><tr><td> <a href='shop.php?cid=<?=$whois?>'>Buy more ingredients</a></td></tr></table>
 </div>
 <script type="text/javascript">
 var canpurchase=true;
-function KeepCount() {
+function validate() {
  var sum = 0;
     $(":checkbox:checked").each(function(){
 		var vars = $(this).val();
@@ -92,9 +93,8 @@ function KeepCount() {
 	}
 } 
 
-		var frm = $('#purchaser');
+		var frm = $('#crafter');
 		frm.submit(function (ev) {
-			if(canpurchase){
 			$.ajax({
 				type: frm.attr('method'),
 				url: frm.attr('action'),
@@ -102,7 +102,7 @@ function KeepCount() {
 				success: function(data) {
 					// Do something with data that came back. 
 					console.log('not ded');
-					location.href = "shop.php?cid="+<?=$whois?>;
+					location.href = "craft.php?cid="+<?=$whois?>;
 				},
 				complete: function(response) {
 					console.log(response);
@@ -111,14 +111,18 @@ function KeepCount() {
 				   console.log('ded');  
 			   }
 			   
-			});}
-			else{
-				alert("you don't have the funds");
-			}
+			});
 			ev.preventDefault();
 			
 })
-	
+	function KeepCount() {
+var NewCount= $(":checkbox:checked").length;
+if (NewCount == 2)
+{
+alert('Pick only one Please')
+return false;
+}
+} 
 
 
 </script>

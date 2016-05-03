@@ -143,13 +143,14 @@ document.getElementById("stairs").style.display = "initial";}</script>
 	You currently have in inventory:<?php foreach($ingsonhand as $ing) echo "<br/>".$ing;?><br/>
 	<input type="button" name="ok" value="Go To Shop" onclick="location.href='shop.php?cid='+<?=$whois?>"></td></tr>
 	<tr><td>With your skills you can build:<?php foreach($recipeallowed as $rec) echo "<br/>".$rec;?><br/></td></tr>
+	<tr><td><input type="button" name="ok" value="Craft Stuff" onclick="location.href='craft.php?cid='+<?=$whois?>"></td></tr></td></tr>
 	<tr><td><input type="button" name="ok" value="close" onclick="document.getElementById('buystuffs').style.display='none';"></td></tr></table>
 	</div>
 	
 <script>
 function buystuff(){
 	//display a div with your current ingredients, display a list of stuff you can make with your skills
-document.getElementById("buystuffs").style.display = "initial"
+document.getElementById("buystuffs").style.display = "initial";
 return false;
 }
 </script>
