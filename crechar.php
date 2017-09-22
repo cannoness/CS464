@@ -14,9 +14,9 @@ $decohair = $_POST['dechair'];
 $skills =$_POST['checkbox'];
 
 $hometown = $_POST['city'];
-
 $sql="INSERT into `characters` (CharUserName,CharName,Gender,EyeColor,HairColor,SkinTone,HairStyle,BeardOrBangsType) Values ('$username','$name','$gender','$eyecolor'
 , '$haircolor','$skintone','$hairstyle','$decohair')";
+
 $link->begin_transaction();
 $result = mysqli_query($link,$sql);
 if($result){

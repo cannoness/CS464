@@ -8,7 +8,7 @@
 
 <div class="form">
 <table border ="1" class ="index"><tr><td colspan="2" class="tablehead"><h2>
-Welcome <?php echo $_SESSION['username']; ?>!</h2><br/><a href="friendlist.php" class="button">Your Friend List</a> </p></td></tr></tr></td><tr><td width="50%">
+Welcome <?php echo $_SESSION['username']; ?>!</h2><br/><a href="friendslist.php?charname=<?=$_SESSION['username']?>" class="button">Your Friend List</a> </p></td></tr></tr></td><tr><td width="50%">
 <?php
 $user = $_SESSION['username'];
 $sql = "select * from  `characters` where CharUserName='$user'";
@@ -20,7 +20,7 @@ $sql = "select * from  `characters` where CharUserName='$user'";
 
  if ($rows==1){
 	 //display char
-	 echo "<a href='yourchar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
+	 echo "<a href='displaychar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender'];?>
 	 <a href='javascript:void(0)' onclick='deletes(<?php echo $array['CharID']?>)'>Delete this char</a></td>
 	 
@@ -30,13 +30,13 @@ $sql = "select * from  `characters` where CharUserName='$user'";
  else if ($rows==2){
 	 //display chars
 	 //yourchar is I ju's link
-	 echo "<a href='yourchar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
+	 echo "<a href='displaychar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender']."<br/>";
 	 echo "<a href='javascript:void(0)' onclick='deletes(".$array['CharID'].")'>Delete this char</a>";?>
 	 </td>
 	 <td width="50%"><?php 
 	$array = mysqli_fetch_array($result);
-	 	 echo "<a href='yourchar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
+	 	 echo "<a href='displaychar.php?charnum=".$array['CharID']."'>".$array['CharName']."</a>";
 	 echo "<br/>Coins: ".$array['Coins'].",".$array['Gender']."<br/>";
 	 echo "<a href='javascript:void(0)' onclick='deletes(".$array['CharID'].")'>Delete this char</a>";
  }
